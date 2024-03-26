@@ -1,0 +1,68 @@
+/* doctor.css */
+
+body {
+    font-family: Arial, sans-serif;
+   }
+   
+   .register, .login {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+   }
+   
+   .register h1, .login h2 {
+    text-align: center;
+    /* color: #333; */
+   }
+   
+   form {
+    display: flex;
+    flex-direction: column;
+   }
+   
+   label {
+    margin-bottom: 5px;
+   }
+   
+   input[type="text"], input[type="email"], input[type="number"], select {
+    padding: 10px;
+    margin-bottom: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+   }
+   
+   input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   }
+   
+   input[type="submit"]:hover {
+    background-color: #0056b3;
+   }
+   
+   .slots {
+    margin-top: 20px;
+   }
+   
+   #slotTimes {
+    width: 100%;
+   }
+   
+   #updateSlotsButton {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   }
+   
+   #updateSlotsButton:hover {
+    background-color: #218838;
+   }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="doctor.css" />
+    <title>Doctor</title>
+  </head>
+  <body>
+    <section class="register">
+      <h1>Enter Doctor details</h1>
+      <form onsubmit="return submitForm(event)">
+        <label for="doctor_name">Name:</label><br />
+        <input
+          type="text"
+          id="doctor_name"
+          name="doctor_name"
+          placeholder="Enter Name"
+          required
+        /><br />
+        <label for="doctor_phone">Phone:</label><br />
+        <input
+          type="text"
+          id="register_doctor_phone"
+          name="doctor_phone"
+          placeholder="Enter Phone Number"
+          pattern="\d{10}"
+          title="Enter exactly 10 digits."
+          maxlength="10"
+          required
+        />
+        <br />
+
+        <label for="doctor_email">Email:</label><br />
+        <input
+          type="email"
+          id="doctor_email"
+          name="doctor_email"
+          placeholder="Enter Email Address"
+          required
+        /><br />
+
+        <label for="fee">Fee:</label>
+        <input type="number" id="fee" name="fee" required /><br />
+
+        <label for="hospital">Select Hospital</label>
+        <select id="hospital">
+          <option value="">Select Hospital</option>
+        </select>
+        <br />
+
+        <label for="department">Select Department</label>
+        <select id="department">
+          <option>Select Department</option>
+        </select>
+        <br />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </section>
+
+    <section class="login">
+      <h2>Login</h2>
+      <form onsubmit="return loginForm(event)">
+        <label for="patient_phone">Phone:</label><br />
+        <input
+          type="text"
+          id="login_doctor_phone"
+          name="patient_phone"
+          placeholder="Enter Phone Number"
+          pattern="\d{10}"
+          maxlength="10"
+          title="Enter 10 digit Phone Number."
+          required
+        /><br />
+        <input type="submit" value="Login" />
+      </form>
+
+      <div id="loginRequest"></div>
+    </section>
+
+    <!-- <section class="slots">
+      <div id="doctorSlots">
+        <h3>Enter date</h3>
+        <input type="date" id="slotDate" />
+      </div>
+    </section> -->
+
+    <section class="slots">
+      <h2>Update Your Available Slots</h2>
+      <form id="updateSlotsForm">
+        <input type="hidden" id="doctorId" value="1" />
+        <!-- Replace '1' with the actual ID of the logged-in doctor -->
+        <label for="slotDay">Day:</label>
+        <select id="slotDay">
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select>
+        <br />
+        <label for="slotTimes">Slots (comma-separated):</label>
+        <input
+          type="text"
+          id="slotTimes"
+          placeholder="09:00 AM, 09:20 AM, ..."
+        />
+        <br />
+        <button type="button" id="updateSlotsButton">Update Slots</button>
+      </form>
+      <div id="doctorSlots"></div>
+    </section>
+  </body>
+  <script src="doctor.js"></script>
+</html>

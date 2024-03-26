@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="register.css" />
+    <title>Patient</title>
+  </head>
+  <body>
+    <section class="register" id="registerSection" style="display: none">
+      <h2>Register Patient</h2>
+      <form onsubmit="return submitForm(event)" id="signupform">
+        <label for="patient_name">Name:</label><br />
+        <input
+          type="text"
+          id="patient_name"
+          name="patient_name"
+          placeholder="Enter Name"
+        /><br />
+        <label for="patient_phone">Phone:</label><br />
+        <input
+          type="text"
+          id="register_patient_phone"
+          name="patient_phone"
+          placeholder="Enter Phone Number"
+          pattern="\d{10}"
+          title="Enter exactly 10 digits."
+        /><br />
+        <label for="patient_email">Email:</label><br />
+        <input
+          type="email"
+          id="patient_email"
+          name="patient_email"
+          placeholder="Enter Email Address"
+        /><br />
+        <label for="dob">Date of Birth:</label><br />
+        <input type="date" id="dob" name="dob" /><br />
+        <label for="gender">Gender:</label><br />
+        <select id="gender" name="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option></select
+        ><br />
+        <label for="patient_address">Address:</label><br />
+        <input
+          type="text"
+          id="patient_address"
+          name="patient_address"
+          placeholder="Enter Address"
+        /><br />
+        <input type="submit" value="Submit" />
+        <p>
+          Already Registered? <a href="#" id="showLogin">Click here</a> to login
+        </p>
+      </form>
+
+      <div id="request"></div>
+    </section>
+
+    <section class="login" id="loginSection">
+      <h2>Login</h2>
+      <form onsubmit="return loginForm(event)" id="loginform">
+        <label for="patient_phone">Phone:</label><br />
+        <input
+          type="text"
+          id="login_patient_phone"
+          name="patient_phone"
+          placeholder="Enter Phone Number"
+          pattern="\d{10}"
+          maxlength="10"
+          title="Enter 10 digit Phone Number."
+        /><br />
+        <input type="submit" value="Login" />
+      </form>
+      <p>
+        New patient? <a href="#" id="registerLink">Click here</a> to register
+      </p>
+      <p><a href="doctor.html" target="_blank">Login as Doctor</a></p>
+
+      <div id="loginRequest"></div>
+    </section>
+
+    <section class="otp" id="otpFormSection">
+      <h2>Enter OTP</h2>
+      <form onsubmit="return otpFormSection(event)" id="otpForm">
+        <label for="otp">OTP:</label><br />
+        <input
+          type="text"
+          id="otp"
+          name="otp"
+          placeholder="Enter OTP"
+          pattern="\d{6}"
+          title="Enter 6 digit OTP."
+          maxlength="6"
+          required
+        /><br />
+        <input type="submit" value="Submit" />
+      </form>
+
+      <div id="otpRequest"></div>
+    </section>
+
+    <section class="registeration-complete" style="display: none">
+      <h3 id="welcometext">Hi! Thank you for completing the Registration</h3>
+
+      <div class="book_numbr">
+        <p>Your MR. No: <span id="mr_number"> </span></p>
+      </div>
+      <div class="book_numbr">
+        <p>Registered Patient Name <span id="user_name"> </span></p>
+      </div>
+
+      <div class="tp_btn">
+        <button type="button" id="logged_in_book_appointment">
+          Continue to Book Appointment
+        </button>
+      </div>
+    </section>
+
+    <section
+      class="book-appointment"
+      id="book-appointment"
+      style="display: none"
+    >
+      <form>
+        <h3>Book Appointment</h3>
+
+        <h3>Select Centre</h3>
+
+        <label for="hospital">Select Hospital</label>
+        <select id="hospital">
+          <option value="">Select Hospital</option>
+        </select>
+
+        <h3>Select Department</h3>
+        <label for="department">Select Department</label>
+        <select id="department">
+          <option>Select Department</option>
+        </select>
+
+        <!-- <h4>Select Doctor</h4> -->
+        <div id="doctorSelect"></div>
+      </form>
+    </section>
+
+    <section class="doctor-details">
+      <div id="doctorDetails">
+        <!-- <h3>Doctor Details</h3> 
+        <p id="doctorName">w</p>
+        <p id="departmentName">w</p>
+        <p id="doctorFee">w</p> -->
+      </div>
+      <div class="date_time">
+        <!-- <button id="selectDate">Select Date</button> -->
+      </div>
+    </section>
+
+    <section class="appointment-details">
+      <!-- iske andar ka code script.js mein -->
+    </section>
+
+    <!-- javascript idhar se -->
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#signupform").validate({
+          rules: {
+            patient_name: {
+              required: true,
+            },
+            patient_phone: {
+              required: true,
+              minlength: 10,
+              maxlength: 10,
+              digits: true,
+            },
+            patient_email: {
+              required: true,
+              email: true,
+            },
+            dob: {
+              required: true,
+            },
+
+            patient_address: {
+              required: true,
+            },
+          },
+          messages: {
+            patient_name: {
+              required: "Please enter your name",
+            },
+            patient_phone: {
+              required: "Please enter your phone number",
+              minlength: "Your phone number must be exactly 10 digits",
+              maxlength: "Your phone number must be exactly 10 digits",
+              digits: "Please enter only digits",
+            },
+            patient_email: {
+              required: "Please enter your email",
+              email: "Please enter a valid email",
+            },
+            dob: {
+              required: "Please enter your date of birth",
+            },
+            patient_address: {
+              required: "Please enter your address",
+            },
+          },
+          submitHandler: function (form) {
+            form.submit();
+          },
+        });
+
+        $("#loginform").validate({
+          rules: {
+            patient_phone: {
+              required: true,
+              minlength: 10,
+              maxlength: 10,
+              digits: true,
+            },
+          },
+          messages: {
+            patient_phone: {
+              required: "Please enter your phone number",
+              minlength: "Your phone number must be exactly 10 digits",
+              maxlength: "Your phone number must be exactly 10 digits",
+              digits: "Please enter only digits",
+            },
+          },
+          submitHandler: function (form) {
+            form.submit();
+          },
+        });
+      });
+    </script> -->
+    <script src="script.js"></script>
+  </body>
+</html>
