@@ -1,5 +1,3 @@
-var patientId; // Global variable to store patient_id
-
 function sendRequest(method, url, data, callback) {
   var req = new XMLHttpRequest();
   req.open(method, url);
@@ -45,14 +43,8 @@ function loginForm(event) {
     `patient_phone=${patient_phone}`,
     function (response) {
       document.getElementById("loginRequest").innerHTML = response;
-      document.getElementById("login_patient_phone").value = "";
 
       console.log(response);
-
-      // console.log(JSON.parse(response).patient_id);
-
-      // console.log("JSON.parse(response)");
-      // console.log(JSON.parse(response));
     }
   );
 
