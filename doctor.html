@@ -6,18 +6,21 @@
 
     <link rel="stylesheet" href="doctor.css" />
     <title>Doctor</title>
+    <!-- below we are including the jQuery and jQuery plugin .js files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
   </head>
   <body>
-    <section class="register">
+    <section class="register" id="doctorRegisterSection" style="display: none">
       <h1>Enter Doctor details</h1>
-      <form onsubmit="return submitForm(event)">
+      <form id="doctorRegistrationForm" onsubmit="return submitForm(event)">
         <label for="doctor_name">Name:</label><br />
         <input
           type="text"
           id="doctor_name"
           name="doctor_name"
           placeholder="Enter Name"
-          required
         /><br />
         <label for="doctor_phone">Phone:</label><br />
         <input
@@ -28,7 +31,6 @@
           pattern="\d{10}"
           title="Enter exactly 10 digits."
           maxlength="10"
-          required
         />
         <br />
 
@@ -38,11 +40,10 @@
           id="doctor_email"
           name="doctor_email"
           placeholder="Enter Email Address"
-          required
         /><br />
 
         <label for="fee">Fee:</label>
-        <input type="number" id="fee" name="fee" required /><br />
+        <input type="number" id="fee" name="fee" /><br />
 
         <label for="hospital">Select Hospital</label>
         <select id="hospital">
@@ -58,26 +59,30 @@
 
         <input type="submit" value="Submit" />
       </form>
+      <p>
+        Already Registered? <a href="#" id="showDoctorLogin">Click here</a> to
+        login
+      </p>
     </section>
 
-    <section class="login">
+    <section class="login" id="doctorLoginSection">
       <h2>Login</h2>
-      <form onsubmit="return loginForm(event)">
-        <label for="patient_phone">Phone:</label><br />
+      <form id="doctorLoginForm" onsubmit="return loginForm(event)">
+        <label for="doctor_phone">Phone:</label><br />
         <input
           type="text"
           id="login_doctor_phone"
-          name="patient_phone"
+          name="doctor_phone"
           placeholder="Enter Phone Number"
           pattern="\d{10}"
           maxlength="10"
           title="Enter 10 digit Phone Number."
-          required
         /><br />
         <input type="submit" value="Login" />
       </form>
 
       <div id="loginRequest"></div>
+      <p>New? <a href="#" id="registerDoctor">Click here</a> to register</p>
     </section>
 
     <!-- <section class="slots">
@@ -87,7 +92,7 @@
       </div>
     </section> -->
 
-    <section class="slots">
+    <section class="slots" id="doctorSlotUpdateSection">
       <h2>Update Your Available Slots</h2>
       <form id="updateSlotsForm">
         <input type="hidden" id="doctorId" value="1" />
@@ -115,4 +120,5 @@
     </section>
   </body>
   <script src="doctor.js"></script>
+  <script src="doctorjqueryvalidation.js"></script>
 </html>

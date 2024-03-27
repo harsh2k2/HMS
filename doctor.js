@@ -126,3 +126,21 @@ function loadDepartments() {
 
 // Call loadDepartments when the page loads
 loadDepartments();
+
+document
+  .getElementById("registerDoctor")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    document.getElementById("doctorRegisterSection").style.display = "block";
+    document.getElementById("doctorLoginSection").style.display = "none";
+    document.getElementById("doctorSlotUpdateSection").style.display = "none";
+  });
+
+document
+  .getElementById("showDoctorLogin")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    document.getElementById("doctorLoginSection").style.display = "block";
+    document.getElementById("doctorRegisterSection").style.display = "none";
+    document.getElementById("doctorSlotUpdateSection").style.display = "block";
+  });

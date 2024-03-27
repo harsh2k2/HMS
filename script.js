@@ -33,6 +33,24 @@ function submitForm(event) {
   return false;
 }
 
+// function loginForm(event) {
+//   event.preventDefault();
+//   var patient_phone = document.getElementById("login_patient_phone").value;
+
+//   sendRequest(
+//     "POST",
+//     "/login",
+//     `patient_phone=${patient_phone}`,
+//     function (response) {
+//       document.getElementById("loginRequest").innerHTML = response;
+
+//       console.log(response);
+//     }
+//   );
+
+//   return false;
+// }
+
 function loginForm(event) {
   event.preventDefault();
   var patient_phone = document.getElementById("login_patient_phone").value;
@@ -42,9 +60,23 @@ function loginForm(event) {
     "/login",
     `patient_phone=${patient_phone}`,
     function (response) {
-      document.getElementById("loginRequest").innerHTML = response;
+      var parsedResponse = JSON.parse(response);
+      if (parsedResponse.message) {
+        // Log the OTP to the console
+        console.log("OTP:", parsedResponse.otp);
+        // Hide the login form
+        document.getElementById("loginSection").style.display = "none";
+        // Display the OTP message
+        document.getElementById("loginRequest").innerHTML =
+          parsedResponse.message;
 
-      console.log(response);
+        // Show the OTP form
+        document.getElementById("otpFormSection").style.display = "block";
+      } else if (parsedResponse.error) {
+        // Display the error message
+        document.getElementById("loginRequest").innerHTML =
+          parsedResponse.error;
+      }
     }
   );
 
@@ -59,6 +91,10 @@ function otpFormSection(event) {
     try {
       var parsedResponse = JSON.parse(response);
       if (typeof parsedResponse === "object" && parsedResponse !== null) {
+        // Hide the OTP form
+        document.getElementById("otpFormSection").style.display = "none";
+        // Display the registration complete message
+
         document.getElementById("mr_number").textContent =
           parsedResponse.mrNumber;
         document.getElementById("user_name").textContent =
@@ -114,7 +150,7 @@ function createDoctorCard(doctor, doctorSelectDiv) {
   doctorCard.innerHTML = `
     <h4>${doctor.doctor_name}</h4>              
     <p>Department: ${doctor.department_name}</p>
-    <button class="book_appointment_btn">Book Your Appointment</button>
+    <button class="book_appointment_btn" id="btnBookAppointment">Book Your Appointment</button>
   `;
   doctorSelectDiv.appendChild(doctorCard);
   // console.log(doctor);
@@ -122,6 +158,8 @@ function createDoctorCard(doctor, doctorSelectDiv) {
     .querySelector(".book_appointment_btn")
     .addEventListener("click", function () {
       showDoctorDetails(doctor);
+      document.getElementById("book-appointment").style.display = "none";
+      document.getElementById("registeration-complete").style.display = "none";
     });
 }
 
@@ -267,6 +305,7 @@ function fillAppointmentDetails(doctor, date, slot) {
             sendRequest("POST", "/book-appointment", data, function (response) {
               console.log(response);
               alert("Appointment confirmed. Pay fee at center.");
+              location.reload();
             });
           } else {
             alert("Failed to retrieve patient ID");
@@ -278,6 +317,7 @@ function fillAppointmentDetails(doctor, date, slot) {
 
 // hide wala code
 
+// show register section and hide login section
 document
   .getElementById("registerLink")
   .addEventListener("click", function (event) {
@@ -287,15 +327,17 @@ document
     document.getElementById("otpFormSection").style.display = "none";
   });
 
+// show login section and hide register section
 document
   .getElementById("showLogin")
   .addEventListener("click", function (event) {
     event.preventDefault();
-    document.getElementById("registerSection").style.display = "none"; // Show the register section
-    document.getElementById("loginSection").style.display = "block"; // Hide the login section
+    document.getElementById("registerSection").style.display = "none";
+    document.getElementById("loginSection").style.display = "block";
     document.getElementById("otpFormSection").style.display = "block";
   });
 
+// show book appointment section and hide login section
 document
   .getElementById("logged_in_book_appointment")
   .addEventListener("click", function (event) {

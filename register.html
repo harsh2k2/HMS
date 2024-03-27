@@ -84,7 +84,7 @@
       <div id="loginRequest"></div>
     </section>
 
-    <section class="otp" id="otpFormSection">
+    <section class="otp" id="otpFormSection" style="display: none">
       <h2>Enter OTP</h2>
       <form onsubmit="return otpFormSection(event)" id="otpForm">
         <label for="otp">OTP:</label><br />
@@ -104,7 +104,11 @@
       <div id="otpRequest"></div>
     </section>
 
-    <section class="registeration-complete" style="display: none">
+    <section
+      class="registeration-complete"
+      id="registeration-complete"
+      style="display: none"
+    >
       <h3 id="welcometext">Hi! Thank you for completing the Registration</h3>
 
       <div class="book_numbr">
@@ -160,91 +164,11 @@
     </section>
 
     <section class="appointment-details">
-      <!-- iske andar ka code script.js mein -->
+      <!-- inside code  in script.js -->
     </section>
 
-    <!-- javascript idhar se -->
+    <!-- javascript from here -->
 
-    <!-- <script
-      src="https://code.jquery.com/jquery-3.7.1.js"
-      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("#signupform").validate({
-          rules: {
-            patient_name: {
-              required: true,
-            },
-            patient_phone: {
-              required: true,
-              minlength: 10,
-              maxlength: 10,
-              digits: true,
-            },
-            patient_email: {
-              required: true,
-              email: true,
-            },
-            dob: {
-              required: true,
-            },
-
-            patient_address: {
-              required: true,
-            },
-          },
-          messages: {
-            patient_name: {
-              required: "Please enter your name",
-            },
-            patient_phone: {
-              required: "Please enter your phone number",
-              minlength: "Your phone number must be exactly 10 digits",
-              maxlength: "Your phone number must be exactly 10 digits",
-              digits: "Please enter only digits",
-            },
-            patient_email: {
-              required: "Please enter your email",
-              email: "Please enter a valid email",
-            },
-            dob: {
-              required: "Please enter your date of birth",
-            },
-            patient_address: {
-              required: "Please enter your address",
-            },
-          },
-          submitHandler: function (form) {
-            form.submit();
-          },
-        });
-
-        $("#loginform").validate({
-          rules: {
-            patient_phone: {
-              required: true,
-              minlength: 10,
-              maxlength: 10,
-              digits: true,
-            },
-          },
-          messages: {
-            patient_phone: {
-              required: "Please enter your phone number",
-              minlength: "Your phone number must be exactly 10 digits",
-              maxlength: "Your phone number must be exactly 10 digits",
-              digits: "Please enter only digits",
-            },
-          },
-          submitHandler: function (form) {
-            form.submit();
-          },
-        });
-      });
-    </script> -->
     <script src="jqueryValidation.js"></script>
     <script src="script.js"></script>
   </body>

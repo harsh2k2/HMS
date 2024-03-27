@@ -106,6 +106,35 @@ app.post("/doctor_register", function (req, res) {
 });
 
 // patient login
+// app.post("/login", function (req, res) {
+//   const { patient_phone } = req.body;
+
+//   const sql =
+//     "SELECT patient_id,patient_name, patient_phone, mrNumber FROM patient WHERE patient_phone = ?";
+
+//   con.query(sql, [patient_phone], function (error, result) {
+//     if (error) {
+//       console.log("Query execution failed:", error);
+//       res.send("Query execution failed");
+//       return;
+//     }
+//     console.log("Query result:", result);
+//     if (result.length > 0) {
+//       // Generate a random OTP
+//       const otp = Math.floor(100000 + Math.random() * 900000);
+//       // Store the OTP in the session
+//       req.session.otp = otp;
+//       req.session.userName = result[0].patient_name;
+//       req.session.mrNumber = result[0].mrNumber;
+//       // Send the OTP to the user
+//       res.send({ message: "Registered user. Enter OTP", otp });
+//     } else {
+//       res.send("Phone number not found");
+//     }
+//   });
+// });
+
+// patient login
 app.post("/login", function (req, res) {
   const { patient_phone } = req.body;
 
@@ -115,7 +144,7 @@ app.post("/login", function (req, res) {
   con.query(sql, [patient_phone], function (error, result) {
     if (error) {
       console.log("Query execution failed:", error);
-      res.send("Query execution failed");
+      res.json({ error: "Query execution failed" });
       return;
     }
     console.log("Query result:", result);
@@ -127,9 +156,9 @@ app.post("/login", function (req, res) {
       req.session.userName = result[0].patient_name;
       req.session.mrNumber = result[0].mrNumber;
       // Send the OTP to the user
-      res.send({ message: "Registered user. Enter OTP", otp });
+      res.json({ message: "Registered user. Enter OTP", otp });
     } else {
-      res.send("Phone number not found");
+      res.json({ error: "Phone number not found" });
     }
   });
 });
