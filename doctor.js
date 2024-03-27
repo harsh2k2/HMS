@@ -51,7 +51,7 @@ function submitForm(event) {
 
 // function to submit doctor login form
 function loginForm(event) {
-  event.preventDefault();
+  // event.preventDefault();
   var doctor_phone = document.getElementById("login_doctor_phone").value;
 
   sendRequest(
@@ -64,17 +64,64 @@ function loginForm(event) {
     }
   );
 
-  return false;
+  // return false;
 }
+
+// Ensure that the login form has an event listener for the submit event
+document
+  .getElementById("doctorLoginForm")
+  .addEventListener("submit", loginForm);
 
 loadHospitals(); // load hospitals when the page loads
 
-// function to update slots in the database of the doctor who has logged in on clicking the update button
+// // function to update slots in the database of the doctor who has logged in on clicking the update button
+// function updateSlots(event) {
+//   event.preventDefault();
+
+//   if (!document.getElementById("slotTimes").value) {
+//     alert("Please enter slot times");
+//     return;
+//   }
+
+//   sendRequest("GET", "/get_doctor_id", null, function (response) {
+//     var doctorId = JSON.parse(response).doctorId;
+//     console.log(doctorId);
+
+//     // document.getElementById("doctorId").value = "19";
+//     // var doctorId = document.getElementById("doctorId").value; // manually setting
+
+//     var day = document.getElementById("slotDay").value;
+//     var slotTimes = document
+//       .getElementById("slotTimes")
+//       .value.split(",")
+//       .map((time) => time.trim());
+
+//     var data = `doctorId=${doctorId}&day=${day}&slots=${JSON.stringify(
+//       slotTimes
+//     )}`;
+//     console.log(JSON.stringify(slotTimes));
+
+//     sendRequest("POST", "/update_slots", data, function (response) {
+//       document.getElementById("doctorSlots").innerHTML = response;
+//       document.getElementById("slotTimes").value = "";
+//     });
+//   });
+
+//   return false;
+// }
+
 function updateSlots(event) {
   event.preventDefault();
 
-  if (!document.getElementById("slotTimes").value) {
-    alert("Please enter slot times");
+  // Get all checked checkboxes
+  var slotTimes = Array.from(
+    document.querySelectorAll('#slotTimes input[type="checkbox"]:checked')
+  ).map(function (checkbox) {
+    return checkbox.value;
+  });
+
+  if (slotTimes.length === 0) {
+    alert("Please select at least one slot time");
     return;
   }
 
@@ -82,14 +129,7 @@ function updateSlots(event) {
     var doctorId = JSON.parse(response).doctorId;
     console.log(doctorId);
 
-    // document.getElementById("doctorId").value = "19";
-    // var doctorId = document.getElementById("doctorId").value; // manually setting
-
     var day = document.getElementById("slotDay").value;
-    var slotTimes = document
-      .getElementById("slotTimes")
-      .value.split(",")
-      .map((time) => time.trim());
 
     var data = `doctorId=${doctorId}&day=${day}&slots=${JSON.stringify(
       slotTimes
@@ -98,7 +138,12 @@ function updateSlots(event) {
 
     sendRequest("POST", "/update_slots", data, function (response) {
       document.getElementById("doctorSlots").innerHTML = response;
-      document.getElementById("slotTimes").value = "";
+      // Clear all checkboxes after submission
+      document
+        .querySelectorAll('#slotTimes input[type="checkbox"]')
+        .forEach(function (checkbox) {
+          checkbox.checked = false;
+        });
     });
   });
 

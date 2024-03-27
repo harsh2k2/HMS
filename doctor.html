@@ -107,13 +107,110 @@
           <option value="Saturday">Saturday</option>
         </select>
         <br />
-        <label for="slotTimes">Slots (comma-separated):</label>
+        <!-- <label for="slotTimes">Slots (comma-separated):</label>
         <input
           type="text"
           id="slotTimes"
           placeholder="09:00 AM, 09:20 AM, ..."
         />
-        <br />
+        <br /> -->
+        <label for="slotTimes">Slots:</label>
+        <div id="slotTimes">
+          <!-- Checkboxes for each time slot -->
+          <input
+            type="checkbox"
+            id="slot0900"
+            name="slotTimes"
+            value="09:00 AM"
+          />
+          <label for="slot0900">09:00 AM</label><br />
+          <input
+            type="checkbox"
+            id="slot0930"
+            name="slotTimes"
+            value="09:30 AM"
+          />
+          <label for="slot0930">09:30 AM</label><br />
+          <!-- Add more checkboxes for each time slot -->
+          <input
+            type="checkbox"
+            id="slot1000"
+            name="slotTimes"
+            value="10:00 AM"
+          />
+          <label for="slot1000">10:00 AM</label><br />
+          <input
+            type="checkbox"
+            id="slot1030"
+            name="slotTimes"
+            value="10:30 AM"
+          />
+          <label for="slot1030">10:30 AM</label><br />
+          <input
+            type="checkbox"
+            id="slot1100"
+            name="slotTimes"
+            value="11:00 AM"
+          />
+          <label for="slot1100">11:00 AM</label><br />
+          <input
+            type="checkbox"
+            id="slot1130"
+            name="slotTimes"
+            value="11:30 AM"
+          />
+          <label for="slot1130">11:30 AM</label><br />
+          <input
+            type="checkbox"
+            id="slot1200"
+            name="slotTimes"
+            value="12:00 PM"
+          />
+          <label for="slot1200">12:00 PM</label><br />
+          <input
+            type="checkbox"
+            id="slot1230"
+            name="slotTimes"
+            value="12:30 PM"
+          />
+          <label for="slot1230">12:30 PM</label><br />
+          <input
+            type="checkbox"
+            id="slot0100"
+            name="slotTimes"
+            value="01:00 PM"
+          />
+          <label for="slot0100">01:00 PM</label><br />
+          <input
+            type="checkbox"
+            id="slot0130"
+            name="slotTimes"
+            value="01:30 PM"
+          />
+          <label for="slot0130">01:30 PM</label><br />
+          <input
+            type="checkbox"
+            id="slot0200"
+            name="slotTimes"
+            value="02:00 PM"
+          />
+          <label for="slot0200">02:00 PM</label><br />
+          <input
+            type="checkbox"
+            id="slot0230"
+            name="slotTimes"
+            value="02:30 PM"
+          />
+          <label for="slot0230">02:30 PM</label><br />
+
+          <input
+            type="checkbox"
+            id="slot0300"
+            name="slotTimes"
+            value="03:00 PM"
+          />
+          <label for="slot0300">03:00 PM</label><br />
+        </div>
         <button type="button" id="updateSlotsButton">Update Slots</button>
       </form>
       <div id="doctorSlots"></div>

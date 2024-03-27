@@ -296,23 +296,6 @@ app.get("/doctor-slots/:doctorId", function (req, res) {
   });
 });
 
-//  to update doctor-specific slots
-app.post("/update-doctor-slots", function (req, res) {
-  const { doctorId, day, slots } = req.body;
-  const sql =
-    // "INSERT INTO doctor_slots (doctor_id, slot_Day, slot_Time) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE slot_Time = ?";
-    "UPDATE doctor_slots SET slot_Time = ? WHERE doctor_id = ? AND slot_Day = ?";
-
-  con.query(
-    sql,
-    [JSON.stringify(slots), doctorId, day],
-    function (error, result) {
-      if (error) throw error;
-      res.send("Doctor slots updated successfully");
-    }
-  );
-});
-
 //  to book an appointment
 app.post("/book-appointment", function (req, res) {
   const {
@@ -342,18 +325,42 @@ app.post("/book-appointment", function (req, res) {
 });
 
 // function to update slots in the database of the doctor who has logged in
+// app.post("/update_slots", function (req, res) {
+//   const { doctorId, day, slots } = req.body;
+
+//   const sql =
+//     "UPDATE doctor_slots SET slot_Time = ? WHERE doctor_id = ? AND slot_Day = ?";
+
+//   con.query(sql, [slots, doctorId, day], function (error, result) {
+//     if (error) throw error;
+//     res.send("Doctor slots updated successfully");
+//   });
+// });
+
+// function to update slots in the database of the doctor who has logged in
+// index.js
+// ...
+
+// function to update slots in the database of the doctor who has logged in
 app.post("/update_slots", function (req, res) {
   const { doctorId, day, slots } = req.body;
+
+  // Parse the JSON string back into an object
+  const slotTimes = JSON.parse(slots);
+
+  // Convert the array of slots to a JSON string
+  const slotTimesJson = JSON.stringify(slotTimes);
 
   const sql =
     "UPDATE doctor_slots SET slot_Time = ? WHERE doctor_id = ? AND slot_Day = ?";
 
-  con.query(sql, [slots, doctorId, day], function (error, result) {
+  con.query(sql, [slotTimesJson, doctorId, day], function (error, result) {
     if (error) throw error;
     res.send("Doctor slots updated successfully");
   });
 });
 
+// ...
 // Fetch all departments during doctor registration
 app.get("/departments", function (req, res) {
   con.query("SELECT * FROM department", function (error, results) {

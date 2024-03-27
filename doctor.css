@@ -1,68 +1,148 @@
 /* doctor.css */
 
-body {
-    font-family: Arial, sans-serif;
-   }
-   
-   .register, .login {
-    width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
-   }
-   
-   .register h1, .login h2 {
-    text-align: center;
-    /* color: #333; */
-   }
-   
-   form {
-    display: flex;
-    flex-direction: column;
-   }
-   
-   label {
-    margin-bottom: 5px;
-   }
-   
-   input[type="text"], input[type="email"], input[type="number"], select {
+
+/* doctor.css */
+
+/* Style for the doctor registration section */
+#doctorRegisterSection {
     padding: 10px;
-    margin-bottom: 20px;
-    /* border: 1px solid #ccc; */
+    border: 1px solid #ccc;
     border-radius: 5px;
-   }
-   
-   input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for the form labels */
+  #doctorRegistrationForm label {
+    display: inline-block;
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  /* Style for the form inputs */
+  #doctorRegistrationForm input[type="text"],
+  #doctorRegistrationForm input[type="email"],
+  #doctorRegistrationForm input[type="number"],
+  #doctorRegistrationForm select {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the submit button */
+  #doctorRegistrationForm input[type="submit"] {
+    background-color: #4CAF50;
     border: none;
-    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
     cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #doctorRegistrationForm input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+
+/* doctor.css */
+
+/* Style for the doctor login section */
+#doctorLoginSection {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for the form labels */
+  #doctorLoginForm label {
+    display: inline-block;
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  /* Style for the form inputs */
+  #doctorLoginForm input[type="text"] {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the submit button */
+  #doctorLoginForm input[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #doctorLoginForm input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style for the registration link */
+  #registerDoctor {
+    color: #4CAF50;
+  }
+  
+  #registerDoctor:hover {
+    color: #45a049;
+  }
+
+
+
+
+/* Style for the container of the time slot checkboxes */
+#slotTimes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
    }
    
-   input[type="submit"]:hover {
-    background-color: #0056b3;
+   /* Style for the time slot checkboxes */
+   #slotTimes input[type="checkbox"] {
+    margin: 5px 0;
    }
    
-   .slots {
-    margin-top: 20px;
+   /* Style for the time slot labels */
+   #slotTimes label {
+    display: inline-block;
+    margin: 5px 0;
+    font-size: 14px;
    }
    
-   #slotTimes {
-    width: 100%;
-   }
-   
+   /* Style for the submit button */
    #updateSlotsButton {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
+    background-color: #4CAF50;
     border: none;
-    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
     cursor: pointer;
+    border-radius: 5px;
    }
    
    #updateSlotsButton:hover {
-    background-color: #218838;
+    background-color: #45a049;
    }
