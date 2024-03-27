@@ -59,3 +59,7 @@ body {
    .tp_btn button:hover {
     background-color: #218838;
    }
+
+   .appointment-details {
+    display: none;
+   }

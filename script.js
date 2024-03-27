@@ -262,6 +262,7 @@ function fillAppointmentDetails(doctor, date, slot) {
   var appointmentDetailsSection = document.querySelector(
     ".appointment-details"
   );
+  appointmentDetailsSection.style.display = "block";
 
   appointmentDetailsSection.innerHTML = `
                                             <h3>Appointment Details</h3>

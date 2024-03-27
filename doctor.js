@@ -50,6 +50,24 @@ function submitForm(event) {
 }
 
 // function to submit doctor login form
+// function loginForm(event) {
+//   // event.preventDefault();
+//   var doctor_phone = document.getElementById("login_doctor_phone").value;
+
+//   sendRequest(
+//     "POST",
+//     "/doctor_login",
+//     `doctor_phone=${doctor_phone}`,
+//     function (response) {
+//       document.getElementById("loginRequest").innerHTML = response;
+//       document.getElementById("login_doctor_phone").value = "";
+//     }
+//   );
+
+//   // return false;
+// }
+
+// function to submit doctor login form
 function loginForm(event) {
   // event.preventDefault();
   var doctor_phone = document.getElementById("login_doctor_phone").value;
@@ -59,8 +77,20 @@ function loginForm(event) {
     "/doctor_login",
     `doctor_phone=${doctor_phone}`,
     function (response) {
-      document.getElementById("loginRequest").innerHTML = response;
-      document.getElementById("login_doctor_phone").value = "";
+      var responseObj = JSON.parse(response);
+      if (responseObj.error) {
+        // Handle error case
+        document.getElementById("loginRequest").innerHTML = responseObj.error;
+      } else {
+        // Handle success case
+        document.getElementById("loginRequest").innerHTML = responseObj.message;
+        document.getElementById("login_doctor_phone").value = "";
+        if (responseObj.message === "Logged in successfully") {
+          // Display the doctorSlotUpdateSection
+          document.getElementById("doctorSlotUpdateSection").style.display =
+            "block";
+        }
+      }
     }
   );
 
@@ -187,5 +217,5 @@ document
     event.preventDefault();
     document.getElementById("doctorLoginSection").style.display = "block";
     document.getElementById("doctorRegisterSection").style.display = "none";
-    document.getElementById("doctorSlotUpdateSection").style.display = "block";
+    document.getElementById("doctorSlotUpdateSection").style.display = "none";
   });

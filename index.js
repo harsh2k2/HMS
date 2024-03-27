@@ -182,6 +182,36 @@ app.get("/get_patient_id/:patient_phone", function (req, res) {
   });
 });
 
+// // doctor login without OTP verification
+// app.post("/doctor_login", function (req, res) {
+//   const { doctor_phone } = req.body;
+
+//   const sql =
+//     "SELECT doctor_id,doctor_name, department_id FROM doctor WHERE doctor_phone = ?";
+
+//   con.query(sql, [doctor_phone], function (error, result) {
+//     if (error) {
+//       console.log("Query execution failed:", error);
+//       res.send("Query execution failed");
+//       return;
+//     }
+//     console.log("Query result:", result);
+//     if (result.length > 0) {
+//       // Directly log in the user without OTP verification
+//       req.session.userName = result[0].doctor_name;
+//       req.session.departmentId = result[0].department_id;
+//       req.session.doctorId = result[0].doctor_id;
+//       res.send({
+//         message: "Logged in successfully",
+//         userName: req.session.userName,
+//         doctorId: req.session.doctorId,
+//       });
+//     } else {
+//       res.send("Phone number not found");
+//     }
+//   });
+// });
+
 // doctor login without OTP verification
 app.post("/doctor_login", function (req, res) {
   const { doctor_phone } = req.body;
@@ -192,7 +222,7 @@ app.post("/doctor_login", function (req, res) {
   con.query(sql, [doctor_phone], function (error, result) {
     if (error) {
       console.log("Query execution failed:", error);
-      res.send("Query execution failed");
+      res.json({ error: "Query execution failed" });
       return;
     }
     console.log("Query result:", result);
@@ -201,13 +231,14 @@ app.post("/doctor_login", function (req, res) {
       req.session.userName = result[0].doctor_name;
       req.session.departmentId = result[0].department_id;
       req.session.doctorId = result[0].doctor_id;
-      res.send({
+      res.json({
         message: "Logged in successfully",
         userName: req.session.userName,
         doctorId: req.session.doctorId,
       });
     } else {
-      res.send("Phone number not found");
+      // Return a JSON object with an error field
+      res.json({ error: "Phone number not found" });
     }
   });
 });
